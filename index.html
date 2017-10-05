@@ -6,6 +6,7 @@
     <meta name="robots" content="nofollow, noindex">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <link href="./css/style.css" rel="stylesheet" type="text/css">
+	<link href="./css/card_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="page">
@@ -34,7 +35,64 @@
         </button>
     </header>
     <!-- Start here -->
-	<main class="card"></main>
+	<main class="card">
+		<div class="page_flex">
+			<div class="page_flex_item product_picture">
+				<h1>Caviar iPhone 7</h1>
+				<p>AmoreNatalya</p>
+				<img src="./images/phone.png" />
+				<div><span>9</span></div>
+				<p>из 10 существующих <br>в мире моделей</p>
+			</div>
+			<div class="page_flex_item description">
+				<p class="subtitle">Характеристики</p>
+				<table class="text">
+					<tr>
+						<td>Тип устройства</td>
+						<td>Телефон</td>
+					</tr>
+					<tr>
+						<td>Размеры, вес</td>
+						<td>138.3 x67.1 x7.1 мм, 138 г</td>
+					</tr>
+					<tr>
+						<td>Размер экрана</td>
+						<td>4.7"</td>
+					</tr>
+					<tr>
+						<td>Операционная система</td>
+						<td>iOS</td>
+					</tr>
+					<tr>
+						<td>Процессор</td>
+						<td>Apple A10 64 бит</td>
+					</tr>
+					<tr>
+						<td>Передача данных</td>
+						<td>Wi-fi, Bluetooth, 3G, LTE</td>
+					</tr>
+					<tr>
+						<td>Фотокамера</td>
+						<td>12 Мп</td>
+					</tr>
+				</table>
+				<p class="subtitle">Отделка</p>
+				<ul>
+					<li><span class="text">Снежно-белая кожа анаконды</span></li>
+					<li><span class="text">Золото</span></li>
+				</ul>
+				<p class="subtitle">Объем памяти</p>
+				<div id="buttons">
+					<input class="memory"  type="button" value="32 GB">
+					<input id = "select" class="memory button_active"  type="button" value="128 GB">
+					<input class="memory"  type="button" value="256 GB">
+				</div>
+				<div><span id="price">185 000 &#8381;</span>
+				<button type="button">Забронировать</button>
+				</div>
+			</div>
+		</div>
+	</main>
 </div>
 
 <script>
@@ -44,8 +102,45 @@
         hamburger.addEventListener('click', function () {
             this.classList.toggle('is-active');
             navMenu.classList.toggle('is-active');
-        })
+        });
+				
+		var selectedInput;
+		var elem = document.getElementById('buttons');
+
+		elem.onclick = function(event) {
+		  var target = event.target; 
+
+		  if (target.tagName != 'INPUT') return;
+
+		  if (document.getElementById('select').className == "memory button_active") {
+			document.getElementById('select').classList.remove('button_active');
+		  }		  
+
+		  highlight(target); 
+		  if (target.value == "32 GB") {
+			document.getElementById("price").innerHTML = "180 000 &#8381;";
+		  }
+		  
+		  if (target.value == "128 GB") {
+			document.getElementById("price").innerHTML = "185 000 &#8381;";
+		  }
+		  
+		  if (target.value == "256 GB") {
+			document.getElementById("price").innerHTML = "190 000 &#8381;";
+		  }
+		  
+		};
+
+		function highlight(node) {
+		  if (selectedInput) {
+			selectedInput.classList.remove('button_active');
+		  }
+		  selectedInput = node;
+		  selectedInput.classList.add('button_active');
+		}		
+		
     });
+
 </script>
 </body>
 </html>
